@@ -1,3 +1,9 @@
+# Copyright (c) 2023, Florian Heinrichs
+# All rights reserved.
+#
+# This source code is licensed under the BSD-style license found in the
+# LICENSE file in the root directory of this source tree.
+
 # Built-in imports
 import random
 from typing import Optional
@@ -121,7 +127,7 @@ def tecator_example():
     Example based on the Tecator dataset:
         http://lib.stat.cmu.edu/datasets/tecator
     """
-    filepath = "../../../data/tecator_fat.csv"
+    filepath = "data/tecator_fat.csv"
     train_data, test_data = load_data(filepath, n_labels=1)
 
     input_shape = (100, 1)
@@ -171,7 +177,7 @@ def phoneme_example():
     Example based on the Phoneme dataset:
         https://web.stanford.edu/~hastie/ElemStatLearn/
     """
-    filepath = "../../../data/phoneme_one_hot.csv"
+    filepath = "data/phoneme_one_hot.csv"
     train_data, test_data = load_data(filepath, n_labels=5)
 
     input_shape = (256, 1)

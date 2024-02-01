@@ -214,6 +214,45 @@ def phoneme_example():
     )
 
 
+def nox_example():
+    """
+    Example based on the NOx dataset:
+        https://fda.readthedocs.io/en/stable/modules/autosummary/skfda.datasets.fetch_nox.html
+    """
+    filepath = "data/nox_one_hot.csv"
+    train_data, test_data = load_data(filepath, n_labels=2)
+
+    input_shape = (24, 1)
+    filter_options = []
+    layer_options = [{
+            'n_neurons': 5,
+            'basis_options': {'n_functions': 6,
+                              'resolution': 24,
+                              'basis_type': 'Legendre'},
+            'activation': 'softmax',
+            'pooling': False
+        }, {
+        'n_neurons': 2,
+        'basis_options': {'n_functions': 3,
+                          'resolution': 24,
+                          'basis_type': 'Fourier'},
+        'activation': 'softmax',
+        'pooling': True
+    }]
+
+    model = setup_model(input_shape, filter_options, layer_options)
+    model.summary()
+
+    model.fit(
+        train_data,
+        epochs=10,
+        steps_per_epoch=500,
+        validation_data=test_data,
+        verbose=1
+    )
+
+
 if __name__ == '__main__':
-    # tecator_example()
+    tecator_example()
     phoneme_example()
+    nox_example()

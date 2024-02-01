@@ -55,7 +55,8 @@ class FunctionalDense(tf.keras.layers.Layer):
         resolution = self.basis.shape[:-1]
 
         if input_shape[1:-1] != resolution:
-            raise TypeError("Shapes of input and basis not compatible.")
+            raise TypeError(f"Shapes of input and basis not compatible: "
+                            f"{input_shape[1:-1]=}, {resolution=}")
 
         n_functions = self.basis.shape[-1]
         n_channels = input_shape[-1]
